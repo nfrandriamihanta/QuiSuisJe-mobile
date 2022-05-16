@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/activity_lesson.xml" value="0.22" />
         <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/activity_main.xml" value="0.35885416666666664" />
+        <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/activity_menu.xml" value="0.35885416666666664" />
         <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.35885416666666664" />
+        <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/activity_topic.xml" value="0.184375" />
+        <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/fragment_list.xml" value="0.35885416666666664" />
+        <entry key="..\:/QuiSuisJe-mobile/app/src/main/res/layout/textview_border.xml" value="0.184375" />
       </map>
     </option>
   </component>

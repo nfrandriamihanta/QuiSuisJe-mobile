@@ -2,6 +2,7 @@ package com.example.quisuisje_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     TextInputEditText identifier = null;
     TextInputEditText password = null;
     ProgressBar bar = null;
+    boolean isAuthentified = false;
+    String message = "authentification échouée";
 
 
     @Override
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 params.put("identifier", identifier.getText());
                 params.put("password", password.getText());
 
+
                 RestHttpClient.post("connexion", params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -59,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject testV=new JSONObject(new String(responseBody));
                             if(testV.getString("status").compareTo("200") == 0)
-                                Toast.makeText(getApplicationContext(), "authentification réussie", Toast.LENGTH_LONG).show();
+                                redirect();
                             else
-                                Toast.makeText(getApplicationContext(), "authentification échouée", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Authentification échouée", Toast.LENGTH_LONG).show();
 
                         }catch (JSONException e){
                             Log.i("MainActivity", "unexpected JSON exception", e);
@@ -70,13 +74,18 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                        Toast.makeText(getApplicationContext(), "Fetching data from webservice is not working" + statusCode, Toast.LENGTH_LONG).show();
+                        bar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Veuillez vérifier votre connexion internet", Toast.LENGTH_LONG).show();
                     }
                 });
-
-
             }
         });
-
+    }
+    private void redirect() {
+        Intent i = new Intent(MainActivity.this, MenuActivity.class);
+        i.putExtra("identifier", identifier.getText().toString());
+        Log.i("Debogage", identifier.getText().toString());
+        startActivity(i);
+        finish();
     }
 }
