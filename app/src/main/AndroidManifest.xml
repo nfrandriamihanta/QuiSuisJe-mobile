@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuiSuisJemobile">
         <activity
-            android:name=".LessonActivity"
-            android:hardwareAccelerated="true"
+            android:name=".QuizActivity"
             android:exported="false" />
+        <activity
+            android:name=".LessonActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".TopicActivity"
             android:exported="false" />

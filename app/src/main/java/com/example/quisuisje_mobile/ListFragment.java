@@ -80,6 +80,11 @@ public class ListFragment extends Fragment {
                 i = new Intent(getActivity(), LessonActivity.class);
                 i.putExtra("topic", topic);
             }
+            else if(mode.compareTo("Quiz") == 0) {
+                i = new Intent(getActivity(), QuizActivity.class);
+                i.putExtra("identifier", identifier);
+                i.putExtra("topic", topic);
+            }
         }
         startActivity(i);
     }
