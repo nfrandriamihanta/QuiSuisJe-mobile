@@ -1,7 +1,13 @@
 package com.example.quisuisje_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -91,6 +97,7 @@ public class QuizActivity extends AppCompatActivity {
                     btnSubmit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            bar.setVisibility(View.VISIBLE);
                             String json = "{" +
                                     "\"identifier\": \""+  getIntent().getStringExtra("identifier")   +"\"," +
                                     "\"topic\": \"" + getIntent().getStringExtra("topic") + "\"," +
@@ -113,6 +120,21 @@ public class QuizActivity extends AppCompatActivity {
                                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                                         try {
                                             JSONObject res=new JSONObject(new String(responseBody));
+                                            bar.setVisibility(View.GONE);
+                                            redirect();
+
+//                                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
+//                                                    .setSmallIcon(R.drawable.logo)
+//                                                    .setContentTitle("QUI SUIS-JE?")
+//                                                    .setContentText("Tes réponses ont bien été enregistrées")
+//                                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+////                                                    .setContentIntent(setPendingIntent())
+////                                                    .setAutoCancel(true);
+//                                            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//// notificationID allows you to update the notification later on.
+//                                            mNotificationManager.notify(0,builder.build());
+
                                             Log.i("QuizActivity", res.toString());
                                         }catch (JSONException e) {
                                             Log.i("QuizActivity", "unexpected JSON exception", e);
@@ -147,6 +169,24 @@ public class QuizActivity extends AppCompatActivity {
                 Log.i("QuizActivity", new String(responseBody));
             }
         });
-
     }
+    private void redirect() {
+        Intent i = new Intent(QuizActivity.this, ResultActivity.class);
+        i.putExtra("identifier", getIntent().getStringExtra("identifier"));
+        startActivity(i);
+        finish();
+    }
+//    public PendingIntent setPendingIntent() {
+//        Intent intent = new Intent(QuizActivity.this, MenuActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+//        return pendingIntent;
+//    }
+//    private void showNotif() {
+//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+//
+//// notificationId is a unique int for each notification that you must define
+//        notificationManager.notify(notificationId, builder.build());
+//    }
+
 }

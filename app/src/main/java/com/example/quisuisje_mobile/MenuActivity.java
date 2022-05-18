@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
             String[] menu = new String[3];
             menu[0] = "Apprendre";
             menu[1]= "Quiz";
-            menu[2] = "Resultat";
+            menu[2] = "Résultat";
 
             Bundle bundle = new Bundle();
             bundle.putStringArray("titles", menu);

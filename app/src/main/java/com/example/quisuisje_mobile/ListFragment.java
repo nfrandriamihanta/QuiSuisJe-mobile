@@ -70,7 +70,7 @@ public class ListFragment extends Fragment {
 
     private void redirect() {
         Intent i = new Intent();
-        if (redirect != null) {
+        if (redirect != null && mode.compareTo("Résultat") != 0) {
             i = new Intent(getActivity(), TopicActivity.class);
             i.putExtra("identifier", identifier);
             i.putExtra("mode", mode);
@@ -84,6 +84,10 @@ public class ListFragment extends Fragment {
                 i = new Intent(getActivity(), QuizActivity.class);
                 i.putExtra("identifier", identifier);
                 i.putExtra("topic", topic);
+            }
+            else if(mode.compareTo("Résultat") == 0) {
+                i = new Intent(getActivity(), ResultActivity.class);
+                i.putExtra("identifier", identifier);
             }
         }
         startActivity(i);

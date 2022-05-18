@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuiSuisJemobile">
         <activity
+            android:name=".CorrectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
